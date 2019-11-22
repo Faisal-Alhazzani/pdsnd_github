@@ -3,10 +3,10 @@ This project created on 2019/11/06
 READ me file created on 2019/11/22
 
 ### Project Title
-Explore Bikeshare data 
+Explore Bikeshare data
 
 ### Description
-Describe what your project is about and what it does
+Analyze Bikeshare data to give insights on some questions 
 
 ### Files used
 Include the files used
