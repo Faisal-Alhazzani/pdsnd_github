@@ -199,16 +199,16 @@ def user_stats(df,city):
 
     # TO DO: Display counts of user types
     counts_user = df['User Type'].value_counts()
-    print('counts of user types: ', counts_user)
+    print('counts of user types: { }'.format(counts_user))
     # TO DO: Display counts of gender
 
     if df.name != 'washington':
         counts_gender = df['Gender'].value_counts()
-        print('counts of user types: ', counts_gender)
+        print('counts of user types: '.format(counts_gender))
 
     # TO DO: Display earliest, most recent, and most common year of birth
         recent_year = df['Birth Year'].min()
-        print('Earliest year of birth', recent_year)
+        print('Earliest year of birth'.format(recent_year))
 
 
         print("\nThis took %s seconds." % (time.time() - start_time))
