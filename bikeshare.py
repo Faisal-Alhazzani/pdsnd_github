@@ -150,7 +150,7 @@ def timeStats(df):
     print('-'*40)
 
 
-def station_stats(df):
+def stationStats(df):
     """Displays statistics on the most popular stations and trip."""
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
@@ -173,7 +173,7 @@ def station_stats(df):
     print('-'*40)
 
 
-def trip_duration_stats(df):
+def tripDurationStats(df):
     """Displays statistics on the total and average trip duration."""
 
     print('\nCalculating Trip Duration...\n')
@@ -191,7 +191,7 @@ def trip_duration_stats(df):
     print('-'*40)
 
 
-def user_stats(df,city):
+def userStats(df,city):
     """Displays statistics on bikeshare users."""
     df.name = city
     print('\nCalculating User Stats...\n')
@@ -214,7 +214,7 @@ def user_stats(df,city):
         print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-def display_data(df):
+def displayData(df):
 
     while True:
         try:
@@ -258,10 +258,10 @@ def main():
         df = loadData(city, month, day)
 
         timeStats(df)
-        station_stats(df)
-        trip_duration_stats(df)
-        user_stats(df,city)
-        display_data(df)
+        stationStats(df)
+        tripDurationStats(df)
+        userStats(df,city)
+        displayData(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
