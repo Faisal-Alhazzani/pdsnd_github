@@ -17,7 +17,7 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    
+
     while True:
         try:
             city = str(input("Please choose a city: (chicago, new york city, or washington) "))
@@ -30,22 +30,22 @@ def get_filters():
         except ValueError:
             print("Sorry, please enter a valid input (chicago, new york city, or washington) ")
             continue
-        
-    
+
+
     while True:
         try:
-            filt = str(input("Would you like to filter by month, day, both or not at all? Type 'none' for no time                                     filter. ")) 
+            filt = str(input("Would you like to filter by month, day, both or not at all? Type 'none' for no time                                     filter. "))
             filt = filt.lower()
             if filt in ['month', 'day', 'both', 'none']:
                 break
             else:
                 print("Sorry, invalid input!")
                 continue
-            
+
         except ValueError:
             print("Sorry, invalid input!")
             continue
-    
+
     if filt == 'none':
                 month = 'all'
                 day = 'all'
@@ -60,14 +60,14 @@ def get_filters():
                 if month in ['all','january','february','March','april','may','june','july','august',
                               'september','october','november','december']:
                     break
-                
+
                 else:
                     print("Sorry, invalid input!")
                     continue
-                    
+
             except ValueError:
                 print("Sorry, please enter a valid input ")
-   
+
                 continue
     if filt in ['day', 'both']:
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
@@ -83,22 +83,22 @@ def get_filters():
             except ValueError:
                 print("Sorry, please enter a valid input ")
                 continue
-     
+
     if filt == 'month':
         day = 'all'
     if filt == 'day':
         month = 'all'
-     
-     
+
+
     print('-'*40)
     return city, month, day
 
 
 def load_data(city, month, day):
-    
+
     df = pd.read_csv(CITY_DATA[city])
-    
-    
+
+
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
@@ -119,32 +119,32 @@ def load_data(city, month, day):
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day.title()]
-       
+
     return df
 
 
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
-    
+
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
     df['Start Time'] = pd.to_datetime(df['Start Time'])
-    
-    
+
+
     # TO DO: display the most common month
     df['month'] = df['Start Time'].dt.month
     popular_month = df['month'].value_counts().idxmax()
-    print('Most Frequent Start month:', popular_month)
+    print('Most Frequent Start month: { }'.format(popular_month))
 
     # TO DO: display the most common day of week
     df['day'] = df['Start Time'].dt.day
     popular_day = df['day'].value_counts().idxmax()
-    print('Most Frequent Start day:', popular_day)
+    print('Most Frequent Start day: { }'.format(popular_day))
 
     # TO DO: display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     popular_hour = df['hour'].value_counts().idxmax()
-    print('Most Frequent Start Hour:', popular_hour)
+    print('Most Frequent Start Hour: { }'.format(popular_hour))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -160,7 +160,7 @@ def station_stats(df):
     popular_st_station = df['Start Station'].value_counts().idxmax()
     print('Most common Start station:', popular_st_station)
 
-    
+
     # TO DO: display most commonly used end station
     popular_end_station = df['End Station'].value_counts().idxmax()
     print('Most common End station:', popular_end_station)
@@ -168,7 +168,7 @@ def station_stats(df):
     # TO DO: display most frequent combination of start station and end station trip
     counts = df.groupby(['Start Station','End Station']).size().sort_values(ascending=False)
     print("Most frequent combined stations:", counts.index[0])
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -196,12 +196,12 @@ def user_stats(df,city):
     df.name = city
     print('\nCalculating User Stats...\n')
     start_time = time.time()
-    
+
     # TO DO: Display counts of user types
     counts_user = df['User Type'].value_counts()
     print('counts of user types: ', counts_user)
     # TO DO: Display counts of gender
-    
+
     if df.name != 'washington':
         counts_gender = df['Gender'].value_counts()
         print('counts of user types: ', counts_gender)
@@ -209,13 +209,13 @@ def user_stats(df,city):
     # TO DO: Display earliest, most recent, and most common year of birth
         recent_year = df['Birth Year'].min()
         print('Earliest year of birth', recent_year)
-    
-    
+
+
         print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
 def display_data(df):
-    
+
     while True:
         try:
             rows = 5
@@ -236,7 +236,7 @@ def display_data(df):
                          else:
                             print("Sorry, invalid input! ")
                             continue
-                            
+
                     except ValueError:
                         print("Sorry, invalid input! ")
                         continue
@@ -245,12 +245,12 @@ def display_data(df):
             else:
                 print("Sorry, invalid input! ")
                 continue
-                
+
         except ValueError:
             print("Sorry, invalid input! ")
             continue
-    
-    
+
+
 
 def main():
     while True:
