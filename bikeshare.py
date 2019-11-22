@@ -94,7 +94,7 @@ def getFilters():
     return city, month, day
 
 
-def load_data(city, month, day):
+def loadData(city, month, day):
 
     df = pd.read_csv(CITY_DATA[city])
 
@@ -255,7 +255,7 @@ def display_data(df):
 def main():
     while True:
         city, month, day = getFilters()
-        df = load_data(city, month, day)
+        df = loadData(city, month, day)
 
         time_stats(df)
         station_stats(df)
